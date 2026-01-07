@@ -80,6 +80,16 @@ public extension simd_float4x4 {
         )
     }
 
+    /// Create a matrix with rotates around a provided axis
+    /// - parameter angle: angle
+    /// - parameter axis: simd_float3
+    /// - returns: a new rotation matrix
+    static func rotate(angle: Angle, axis: simd_float3) -> float4x4 {
+        let rotationQuaternion = simd_quatf(angle: angle.radians, axis: axis)
+        let rotationMatrix = simd_float4x4(rotationQuaternion)
+        return rotationMatrix
+    }
+
     // MARK: - Scale
 
     /// Returns a scaling matrix
